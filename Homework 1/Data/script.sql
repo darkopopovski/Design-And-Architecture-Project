@@ -3,7 +3,7 @@ drop schema if exists project cascade;
 create schema project;
 
 drop table if exists users;
-drop table if exists map_places_data;
+drop table if exists map_skopje_banks_atms;
 
 create table users(
  user_id serial primary key,
@@ -14,13 +14,17 @@ create table users(
  user_role varchar(255)
 );
 
-create table map_places_data(
-   	id serial primary key AUTO_INCREMENT,
-	name varchar(255),
+create table map_skopje_banks_atms(
+   	id serial primary key,
+   	totalScore float,
+	title varchar(255),
 	reviewsCount int,
-	street varchar(255),
+	street varchar(255),                   
 	city varchar(255),
+	state varchar(255),
+	countryCode varchar(255),
 	webiste varchar(255),
 	phone varchar(255),
-	categoryName varchar(255)
+	categoryName varchar(255),
+	url varchar(255)
 );
