@@ -1,0 +1,67 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light text-uppercases">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/home}">Почетна</a>
+                </li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/about}">За Нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/contact}">Контакт</a>
+                    </li>
+                <th:block th:if="${#request.getRemoteUser()!=null}">
+                <li class="nav-item">
+                    <a th:href="@{/expositories}"><button type="button" class="btn btn-primary">НЛБ - Експозитори</button></a>
+                </li>
+                </th:block>
+
+            </ul>
+            <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <th:block th:if="${#request.getRemoteUser()==null}">
+                        <li class="nav-item">
+                            <a th:href="@{/login}"><button type="button" class="btn btn-primary">Login</button></a>
+                        </li>
+                        <li class="nav-item">
+                            <a th:href="@{/register}"><button type="button" class="btn btn-danger">Register</button></a>
+                        </li>
+                    </th:block>
+
+                    <th:block th:if="${#request.getRemoteUser()!=null}">
+                        <li class="nav-item">
+                            <a th:href="@{/logout}"><button type="button" class="btn btn-primary">Logout</button></a>
+                        </li>
+                        <li class="nav-item text-uppercase">
+                            <a class="nav-link">
+
+                                Welcome <th:block th:if="${#request.getRemoteUser()!=null}"
+                                                  th:text="${#request.getRemoteUser()}" />
+                            </a>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+        <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
