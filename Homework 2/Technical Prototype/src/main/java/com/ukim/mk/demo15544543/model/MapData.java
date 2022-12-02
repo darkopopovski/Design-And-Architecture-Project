@@ -14,32 +14,34 @@ public class MapData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    public Integer id;
 
-    String plаceUrl;
-    String title ;
-    Float rating;
-    String reviewCount ;
-    String category ;
-    String attributes ;
-    String address ;
-    String plusCode ;
-    String website ;
-    String phoneNumber ;
-    String sunday ;
-    String monday ;
-    String tuesday ;
-    String wednesday ;
-    String thursday ;
-    String friday ;
-    String saturday ;
-    String currentStatus ;
-    String imgUrl ;
-    Boolean isClaimed;
-    Float latitude ;
-    Float longitude ;
-    String query ;
-    Date timestampp ;
+    public String plаceUrl;
+    public String title ;
+    public Float rating;
+    public String reviewCount ;
+    public String category ;
+    public String attributes ;
+    public String address ;
+
+    @Column(name = "plusCode")
+    public String plusCode ;
+    public String website ;
+    public String phoneNumber ;
+    public String sunday ;
+    public String monday ;
+    public String tuesday ;
+    public String wednesday ;
+    public String thursday ;
+    public String friday ;
+    public String saturday ;
+    public String currentStatus ;
+    public String imgUrl ;
+    public Boolean isClaimed;
+    public Float latitude ;
+    public Float longitude ;
+    public String query ;
+    public Date timestampp ;
 
     public MapData(Integer id, String plаceUrl, String title, Float rating, String reviewCount, String category, String attributes, String address, String plusCode, String website, String phoneNumber, String sunday, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String currentStatus, String imgUrl, Boolean isClaimed, Float latitude, Float longitude, String query, Date timestampp) {
         this.id = id;
