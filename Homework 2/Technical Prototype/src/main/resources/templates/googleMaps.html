@@ -8,9 +8,7 @@
 <body>
 <!--The div element for the map -->
 <div id="googleMaps">
-    <div id="map">
-
-    </div>
+    <div id="map"></div>
 </div>
 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <script>
@@ -30,7 +28,6 @@
     map.addLayer(markers);
 
     markers.addMarker(new OpenLayers.Marker(lonLat));
-
     map.setCenter (lonLat, zoom);
 </script>
 </body>
