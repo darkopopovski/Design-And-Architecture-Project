@@ -22,7 +22,7 @@ p{
 
 #googleMaps{
     width: 87%;
-    height: 92.2vh;
+    height: 100vh;
     margin-left: 13%;
     display: flex;
     align-items: center;
@@ -45,4 +45,14 @@ p{
 .paragraphs p{
     margin-left: 20%;
     font-size: 3.5rem;
+}
+
+.fiksirani{
+    border:1px solid white;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
