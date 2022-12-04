@@ -156,6 +156,31 @@
             padding-right: 0.6rem;
         }
 
+
+        .btn{
+            text-shadow: -1px -1px 10px rgba(255,255,255,0.5);
+            border: 1px solid #b70000;
+            color: white;
+            font-size: 1rem;
+            border:none;
+            background: #af0101;
+            padding: 0.5rem 1.3rem;
+            border-radius: 10%;
+            cursor: pointer;
+            transition: 1s ease;
+            display:block;
+            box-shadow: 3px 2px 10px #d50101,
+            -1px -1px 1px #e60000;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: infinite 1s ease;
+        }
+
+        .btn:hover{
+            background-color: #58ACFA;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -170,10 +195,10 @@
     <div class="right">
         <th:block th:if="${#request.getRemoteUser()==null}">
             <li class="nav-item">
-                <a th:href="@{/login}"><button type="button" class="btn btn-primary">Најава</button></a>
+                <a th:href="@{/login}"><button type="button" class="btn">Најава</button></a>
             </li>
             <li class="nav-item">
-                <a th:href="@{/register}"><button type="button" class="btn btn-danger">Регистрација</button></a>
+                <a th:href="@{/register}"><button type="button" class="btn">Регистрација</button></a>
             </li>
         </th:block>
 
@@ -206,11 +231,10 @@
 
             <a href="/contact"><li>Контакт</li></a>
         </div>
-
+        <div class="outlaw">
+            <a th:href="@{/expository}"><li>Експозитори</li></a>
+        </div>
         <th:block th:if="${#request.getRemoteUser()!=null}">
-            <div class="outlaw">
-                <a th:href="@{/expository}"><li>Експозитори</li></a>
-            </div>
             <div class="outlaw">
                 <a th:href="@{/map}"><li>Мапа</li></a>
             </div>

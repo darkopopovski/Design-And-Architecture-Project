@@ -8,11 +8,13 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-size: cover;
 }
 
 p{
     width: 75%;
     font-size: 2rem;
+    text-transform: uppercase;
     height: 70%;
     color: white;
     -webkit-text-stroke-width: 1px;
