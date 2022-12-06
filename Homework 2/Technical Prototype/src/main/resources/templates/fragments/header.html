@@ -68,6 +68,35 @@
             margin-right: 2rem;
         }
 
+        .outlaw:hover{
+            text-shadow: -1px -1px 10px rgba(255,255,255,0.5);
+            border: 1px solid #b70000;
+            color: white;
+            border:none;
+            background: #af0101;
+            cursor: pointer;
+            transition: 1s ease;
+            display:block;
+            box-shadow: 3px 2px 10px #d50101,
+            -1px -1px 1px #e60000;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: infinite 1s ease;
+            margin-right: 5px;
+            width: 100%;
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            padding: 15px;
+            display: flex;
+            margin-top: 6px;
+            background: #2c2b39;
+            justify-content: center;
+            margin-right: 2rem;
+        }
+
+
+
 
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 
@@ -157,14 +186,14 @@
         }
 
 
-        .btn{
+        .btnMine{
             text-shadow: -1px -1px 10px rgba(255,255,255,0.5);
             border: 1px solid #b70000;
             color: white;
             font-size: 1rem;
             border:none;
             background: #af0101;
-            padding: 0.5rem 1.3rem;
+            padding: 0.7rem 1.4rem;
             border-radius: 10%;
             cursor: pointer;
             transition: 1s ease;
@@ -175,9 +204,10 @@
             font-weight: 500;
             text-decoration: none;
             transition: infinite 1s ease;
+            margin-right: 5px;
         }
 
-        .btn:hover{
+        .btnMine:hover{
             background-color: #58ACFA;
             color: white;
         }
@@ -195,10 +225,10 @@
     <div class="right">
         <th:block th:if="${#request.getRemoteUser()==null}">
             <li class="nav-item">
-                <a th:href="@{/login}"><button type="button" class="btn">Најава</button></a>
+                <a th:href="@{/login}"><button type="button" class="btnMine">Најава</button></a>
             </li>
             <li class="nav-item">
-                <a th:href="@{/register}"><button type="button" class="btn">Регистрација</button></a>
+                <a th:href="@{/register}"><button type="button" class="btnMine">Регистрација</button></a>
             </li>
         </th:block>
 
@@ -240,9 +270,6 @@
             </div>
         </th:block>
     </ul>
-    <div class="footer" style="color:#2c2b39;border-top: 1px solid #2c2b39; width:100%;font-size:1.5rem;text-align: center;">
-        ©FINKI.UKIM.MK
-    </div>
 </nav>
 </body>
 </html>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,900;1,300;1,900&display=swap');
 .main-wrapper{
     background: #2c2b39;
-    height: 92.5vh;
+    height:100vh;
     width: 87%;
     margin-left: 13%;
     display: flex;
@@ -13,7 +13,7 @@
 
 p{
     width: 75%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     height: 70%;
     color: white;
@@ -46,7 +46,7 @@ p{
 }
 .paragraphs p{
     margin-left: 20%;
-    font-size: 3.5rem;
+    font-size: 2rem;
 }
 
 .fiksirani{

@@ -26,7 +26,7 @@
     </style>
 
 </head>
-<body>
+<body id="body" onload="toggleZoomScreen()">
 
     <header th:replace="fragments/header"/>
     <!--<header style="margin:0px;width: 0%;height: 0%"></header>-->
@@ -37,6 +37,10 @@
     </section>
     <!-- Footer -->
 
-
+    <script>
+        function toggleZoomScreen() {
+            document.body.style.zoom = "92%";
+        }
+    </script>
 </body>
 </html>
