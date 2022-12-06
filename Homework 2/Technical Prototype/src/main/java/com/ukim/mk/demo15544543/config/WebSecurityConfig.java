@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                //.loginPage("/login").permitAll()
+                .loginPage("/login").permitAll()
                 .failureUrl("/login?error=BadCredentials")
                 .defaultSuccessUrl("/home", true)
                 .and()
