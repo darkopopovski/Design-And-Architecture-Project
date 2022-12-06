@@ -187,7 +187,6 @@ html{
     max-width: 750px;
     z-index: 100;
     margin: 0 auto;
-    padding-top: 100px;
 }
 .login.login-container {
     width: 750px;
