@@ -26,6 +26,7 @@
         <div class="form-group">
           <input type="password" class="form-control" placeholder="*****" required="" name="password">
         </div>
+        <div th:text="${param.error}" class="text-danger"></div>
         <button type="submit" class="form-button button-l margin-b">Sign In</button>
 
         <a class="text-darkyellow" href="#"><small>Forgot your password?</small></a>
