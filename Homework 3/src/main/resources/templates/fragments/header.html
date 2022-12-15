@@ -1,0 +1,275 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <style>
+        html a,li{
+            text-decoration: none;
+            color: white;
+            list-style: none;
+        }
+        .navbar2{
+            width:13%;
+            position: fixed;
+            height: 110vh;
+            background-color: white;
+            z-index: 0;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ul{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .picwithtext{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+            width: 100%;
+            height: 3rem;
+            text-align: center;
+            background: #2c2b39;
+        }
+
+        .picwithtext a{
+            padding-right: 1rem;
+            text-decoration: none;
+        }
+
+        .outlaw{
+            width: 100%;
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            padding: 15px;
+            display: flex;
+            margin-top: 6px;
+            background: #2c2b39;
+            justify-content: center;
+            margin-right: 2rem;
+        }
+
+        .outlaw:hover{
+            text-shadow: -1px -1px 10px rgba(255,255,255,0.5);
+            border: 1px solid #b70000;
+            color: white;
+            border:none;
+            background: #af0101;
+            cursor: pointer;
+            transition: 1s ease;
+            display:block;
+            box-shadow: 3px 2px 10px #d50101,
+            -1px -1px 1px #e60000;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: infinite 1s ease;
+            margin-right: 5px;
+            width: 100%;
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            padding: 15px;
+            display: flex;
+            margin-top: 6px;
+            background: #2c2b39;
+            justify-content: center;
+            margin-right: 2rem;
+        }
+
+
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            height: 10%;
+            position:fixed;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            z-index: 999;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            margin-top: 20px;
+            font-size: 1.0rem;
+        }
+
+        .login{
+            color: white;
+            width: 75px;
+            height: 33px;
+        }
+        .nav-bar a {
+            text-decoration: none;
+            color: #2c2b39;
+        }
+
+        .nav-bar li {
+            list-style-type: none;
+            padding-right: 0.7rem;
+        }
+
+        .nav-left {
+            width: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            padding-left: 3rem;
+        }
+
+        .h1Combined2{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 50px;
+            margin: 0 70rem 0 0;
+            padding:1rem;
+        }
+
+        .right{
+            display: flex;
+            width: 10rem;
+            height: 3.5rem;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            border-radius: 5%;
+            padding-right: 3rem;
+            font-size:1rem;
+            color:#2c2b39;
+        }
+        .right ul{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .right a{
+            text-decoration: none;
+            list-style-type: none;
+            color: #2c2b39;
+            margin: 0 0 0 -0.3rem;
+            padding-right: 0.6rem;
+        }
+
+
+        .btnMine{
+            text-shadow: -1px -1px 10px rgba(255,255,255,0.5);
+            border: 1px solid #b70000;
+            color: white;
+            font-size: 0.7rem;
+            border:none;
+            background: #af0101;
+            padding: 0.5rem 1.1rem;
+            border-radius: 10%;
+            cursor: pointer;
+            transition: 1s ease;
+            display:block;
+            box-shadow: 3px 2px 10px #d50101,
+            -1px -1px 1px #e60000;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: infinite 1s ease;
+            margin-right: 5px;
+        }
+
+        .btnMine:hover{
+            background-color: #58ACFA;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <div class="h1Combined2">
+            <h1 style="color:#0f0f3b">NLB</h1><h1 style="color:red">BANK</h1>
+        </div>
+    </div>
+
+    <div class="right">
+        <th:block th:if="${#request.getRemoteUser()==null}">
+            <li class="nav-item">
+                <a th:href="@{/login}"><button type="button" class="btnMine">Најава</button></a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/register}"><button type="button" class="btnMine">Регистрација</button></a>
+            </li>
+        </th:block>
+
+        <th:block th:if="${#request.getRemoteUser()!=null}">
+
+            <li class="nav-item text-uppercase">
+                <a class="nav-link" style="color: #2c2b39">
+                    Welcome <th:block th:if="${#request.getRemoteUser()!=null}"
+                                      th:text="${#request.getRemoteUser()}" />
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/logout}"><button type="button" class="btn btn-primary">Одлогирај</button></a>
+            </li>
+        </th:block>
+    </div>
+</nav>
+<nav class="navbar2">
+    <ul>
+        <div class="outlaw">
+            <a href="/home"><li>Почетна</li></a>
+        </div>
+
+        <div class="outlaw">
+
+            <a href="/about"><li>За Нас</li></a>
+        </div>
+
+        <div class="outlaw">
+
+            <a href="/contact"><li>Контакт</li></a>
+        </div>
+        <div class="outlaw">
+            <a th:href="@{/expository}"><li>Експозитори</li></a>
+        </div>
+        <th:block th:if="${#request.getRemoteUser()!=null}">
+            <div class="outlaw">
+                <a th:href="@{/map}"><li>Мапа</li></a>
+            </div>
+        </th:block>
+    </ul>
+</nav>
+</body>
+</html>
