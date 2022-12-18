@@ -5,9 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MapDataRepository extends JpaRepository<MapData, Integer> {
 
-    @Query(value = "select * from map_skopje_banks_atms as mapData where mapData.plusCode ilike '%Skopje%'",nativeQuery = true)
-    public List<MapData> findAllByCitySkopje();
+    
+
+    @Query(value = "select * from map_skopje_banks_atms as mapData where (mapdata.plusCode ~ ? and mapData.category=?)",nativeQuery = true)
+    public List<MapData> findAllByCategory(String city, String category);
 }
