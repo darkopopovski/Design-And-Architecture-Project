@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
   <link rel="stylesheet" type="text/css" th:href="@{../css/styleCSS.css}"/>
+    <!--    Style for map-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css"
+          type="text/css">
+    <script src="//unpkg.com/leaflet-gesture-handling"></script>
 </head>
 <body>
 <!--The div element for the map -->
@@ -12,34 +18,30 @@
     <div id="map"></div>
 
     <ul style="display: none" th:each="mapData:${mapData}">
-        <li  class="map-latitude" th:text="${mapData.getLatitude()}"></li>
+        <li  class="latArray" th:text="${mapData.getLatitude()}"></li>
     </ul>
 
     <ul style="display: none" th:each="mapData:${mapData}">
-        <li  class="map-longitude" th:text="${mapData.getLongitude()}"></li>
+        <li  class="lonArray" th:text="${mapData.getLongitude()}"></li>
     </ul>
 
 
 </div>
 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <script>
-    map = new OpenLayers.Map("map");
-    map.addLayer(new OpenLayers.Layer.OSM());
 
+    let latArray = document.getElementsByClassName('latArray');
+    let lonArray = document.getElementsByClassName('lonArray');
 
-    var lonLat = new OpenLayers.LonLat( 22.411937500000008 ,41.91518749999999 )
-        .transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            map.getProjectionObject() // to Spherical Mercator Projection
-        );
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-    var zoom=16;
-
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
-
-    markers.addMarker(new OpenLayers.Marker(lonLat));
-    map.setCenter (lonLat, zoom);
+    for(let i in latArray.length)
+    L.marker([51.5, -0.09]).addTo(map)
+        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        .openPopup();
 
 </script>
 </body>
