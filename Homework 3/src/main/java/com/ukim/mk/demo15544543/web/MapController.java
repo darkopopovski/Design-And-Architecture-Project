@@ -36,9 +36,15 @@ public class MapController {
     @PostMapping("/filtered-data-by-cityAndCategory")
     public String getMapCityPage(@RequestParam String city, @RequestParam String category, Model model){
         List<MapData> mapData = mapDataService.findAllByCategory(city,category);
-        model.addAttribute("bodyContent", "googleMaps");
-        model.addAttribute("mapData", mapData);
-        return "master-template";
+        if(mapData.isEmpty()){
+            model.addAttribute("bodyContent", "mapEmpty");
+            model.addAttribute("mapData", mapData);
+            return "master-template";
+        }else{
+            model.addAttribute("bodyContent", "googleMaps");
+            model.addAttribute("mapData", mapData);
+            return "master-template";
+        }
     }
 
     @PostMapping("/filtered-data-by-address")

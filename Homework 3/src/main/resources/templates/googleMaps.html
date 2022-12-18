@@ -13,7 +13,7 @@
     <script src="//unpkg.com/leaflet-gesture-handling"></script>
 </head>
 <body>
-<!--The div element for the map -->
+
 <div id="googleMaps">
     <div class="map-nav">
         <form action="/map/filtered-data-by-cityAndCategory" method="post">
@@ -99,12 +99,13 @@
     <ul style="display: none" th:each="mapData:${mapData}">
         <li  class="imageArray" th:text="${mapData.getImgUrl()}"></li>
     </ul>
-
-
 </div>
-<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-<script>
 
+<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+
+
+
+<script>
     let latArray = [];
     let lonArray = [];
     let titleArray = [];
@@ -140,8 +141,6 @@
                     '<div style="width:300px; height:250px;background-image: url('+imageArray[i]+')"></div>'
                 );
         }
-
-
 </script>
 </body>
 </html>
