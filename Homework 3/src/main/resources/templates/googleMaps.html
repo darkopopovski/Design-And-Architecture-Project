@@ -18,14 +18,23 @@
     <div class="map-nav">
         <form action="/map" method="post">
             <select name="city">
+                <option value="NULL" selected="true" disabled="disabled" name="city">Одбери Град</option>
                 <option value="Skopje" name="city">Skopje</option>
             </select>
 
             <select name="category">
-                <option value="ATM" name="category">ATM</option>
+                <option value="NULL" selected="true" disabled="disabled" name="category">Одбери Категорија</option>
+                <option value="Bank" name="category">ATM</option>
+                <option value="ATM" name="category">Bank</option>
             </select>
-            <button type="submit" class="btnNav">GO</button>
+            <button type="submit" class="btnNav">Барај</button>
         </form>
+
+        <form action="/map" method="post">
+            <input name="address" placeholder="Имате адреса? Внесете ја тука и проверете"/>
+            <button type="submit" class="btnNav">Барај</button>
+        </form>
+
     </div>
     <div id="map"></div>
 
