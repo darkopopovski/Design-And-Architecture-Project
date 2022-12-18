@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +10,16 @@
 <!--The div element for the map -->
 <div id="googleMaps">
     <div id="map"></div>
+
+    <ul style="display: none" th:each="mapData:${mapData}">
+        <li  class="map-latitude" th:text="${mapData.getLatitude()}"></li>
+    </ul>
+
+    <ul style="display: none" th:each="mapData:${mapData}">
+        <li  class="map-longitude" th:text="${mapData.getLongitude()}"></li>
+    </ul>
+
+
 </div>
 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <script>
