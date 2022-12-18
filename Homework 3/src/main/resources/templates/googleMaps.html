@@ -1,34 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
   <link rel="stylesheet" type="text/css" th:href="@{../css/styleCSS.css}"/>
+    <!--    Style for map-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css"
+          type="text/css">
+    <script src="//unpkg.com/leaflet-gesture-handling"></script>
 </head>
 <body>
 <!--The div element for the map -->
 <div id="googleMaps">
+    <div class="map-nav">
+        <form action="/map" method="post">
+            <select name="city">
+                <option value="Skopje" name="city">Skopje</option>
+            </select>
+
+            <select name="category">
+                <option value="ATM" name="category">ATM</option>
+            </select>
+            <button type="submit" class="btnNav">GO</button>
+        </form>
+    </div>
     <div id="map"></div>
+
+    <ul style="display: none" th:each="mapData:${mapData}">
+        <li  class="latArray" th:text="${mapData.getLatitude()}"></li>
+    </ul>
+
+    <ul style="display: none" th:each="mapData:${mapData}">
+        <li  class="lonArray" th:text="${mapData.getLongitude()}"></li>
+    </ul>
+
+
 </div>
 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <script>
-    map = new OpenLayers.Map("map");
-    map.addLayer(new OpenLayers.Layer.OSM());
 
+    let latArray = [];
+    let lonArray = [];
+    for (var i=0; i<document.getElementsByClassName('latArray').length; i++) {
+       latArray[i] = (document.getElementsByClassName('latArray').item(i).innerHTML)
+        lonArray[i] = (document.getElementsByClassName('lonArray').item(i).innerHTML)
+    }
+     for(let i in latArray){
+         console.log(latArray + " - " + lonArray)
+     }
 
-    var lonLat = new OpenLayers.LonLat( 22.411937500000008 ,41.91518749999999 )
-        .transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            map.getProjectionObject() // to Spherical Mercator Projection
-        );
+        const map = L.map('map').setView([latArray[0], lonArray[0]], 14);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            minZoom: 0,
+            maxZoom: 20,
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-    var zoom=16;
+        for(let i in latArray){
+            marker = L.marker([latArray[i], lonArray[i]]).addTo(map)
+                .bindPopup('<span style="text-align: center">' + '<hr>' +
+                    '<h6> <b style="color: #3b5998">Име:</b> ' + latArray[i] + '</h6>' +
+                    '<h6> <b style="color: #3b5998">Категорија:</b> ' + latArray[i] + '</h6>'
+                   );
+        }
 
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
-
-    markers.addMarker(new OpenLayers.Marker(lonLat));
-    map.setCenter (lonLat, zoom);
 
 </script>
 </body>
