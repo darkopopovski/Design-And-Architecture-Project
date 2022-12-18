@@ -15,6 +15,18 @@
 <body>
 <!--The div element for the map -->
 <div id="googleMaps">
+    <div class="map-nav">
+        <form action="/map" method="post">
+            <select name="city">
+                <option value="Skopje" name="city">Skopje</option>
+            </select>
+
+            <select name="category">
+                <option value="ATM" name="category">ATM</option>
+            </select>
+            <button type="submit" class="btnNav">GO</button>
+        </form>
+    </div>
     <div id="map"></div>
 
     <ul style="display: none" th:each="mapData:${mapData}">

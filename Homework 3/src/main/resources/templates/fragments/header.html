@@ -221,18 +221,7 @@
             <h1 style="color:#0f0f3b">NLB</h1><h1 style="color:red">BANK</h1>
         </div>
     </div>
-    <div>
-        <form action="/map" method="post">
-            <select name="city">
-                <option value="Skopje" name="city">Skopje</option>
-            </select>
 
-            <select name="category">
-                <option value="ATM" name="category">ATM</option>
-            </select>
-            <button type="submit">GO</button>
-        </form>
-    </div>
     <div class="right">
         <th:block th:if="${#request.getRemoteUser()==null}">
             <li class="nav-item">
