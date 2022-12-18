@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/view/movies/**", "/", "/movie/projections/detailed-preview/", "/tests", "/home/videos/**",
                         "/videos/**", "/projections/view", "/movies/view/**", "/home",
                         "/home/**", "/assets/**", "/register", "/movies", "/api/**", "/logout").permitAll()
-                .antMatchers("/admin/**", "/projections/add-form", "/movies/add-form").hasRole("EMPLOYEE")
+                .antMatchers("/admin/**", "/projections/add-form", "/movies/add-form" ,"/map/**").hasRole("EMPLOYEE")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

@@ -48,11 +48,24 @@
     </ul>
 
 
-
-
-
     <ul style="display: none" th:each="mapData:${mapData}">
         <li  class="lonArray" th:text="${mapData.getLongitude()}"></li>
+    </ul>
+
+    <ul style="display: none" th:each="mapData:${mapData}">
+        <li  class="titleArray" th:text="${mapData.getTitle()}"></li>
+    </ul>
+
+    <ul style="display: none" th:each="mapData:${mapData}">
+        <li  class="categoryArray" th:text="${mapData.getCategory()}"></li>
+    </ul>
+
+    <ul style="display: none" th:each="mapData:${mapData}">
+        <li  class="addressArray" th:text="${mapData.getAddress()}"></li>
+    </ul>
+
+    <ul style="display: none" th:each="mapData:${mapData}">
+        <li  class="imageArray" th:text="${mapData.getImgUrl()}"></li>
     </ul>
 
 
@@ -62,13 +75,22 @@
 
     let latArray = [];
     let lonArray = [];
+    let titleArray = [];
+    let categoryArray = [];
+    let addressArray = [];
+    let imageArray = [];
     for (var i=0; i<document.getElementsByClassName('latArray').length; i++) {
        latArray[i] = (document.getElementsByClassName('latArray').item(i).innerHTML)
         lonArray[i] = (document.getElementsByClassName('lonArray').item(i).innerHTML)
+        titleArray[i] = (document.getElementsByClassName('titleArray').item(i).innerHTML)
+        categoryArray[i] = (document.getElementsByClassName('categoryArray').item(i).innerHTML)
+        addressArray[i] = (document.getElementsByClassName('addressArray').item(i).innerHTML)
+        imageArray[i] = (document.getElementsByClassName('imageArray').item(i).innerHTML)
     }
-     for(let i in latArray){
-         console.log(latArray + " - " + lonArray)
-     }
+
+         console.log(addressArray[0]);
+    console.log(imageArray[0]);
+
 
         const map = L.map('map').setView([latArray[0], lonArray[0]], 18);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -80,9 +102,11 @@
         for(let i in latArray){
             marker = L.marker([latArray[i], lonArray[i]]).addTo(map)
                 .bindPopup('<span style="text-align: center">' + '<hr>' +
-                    '<h6> <b style="color: #3b5998">Име:</b> ' + latArray[i] + '</h6>' +
-                    '<h6> <b style="color: #3b5998">Категорија:</b> ' + latArray[i] + '</h6>'
-                   );
+                    '<h6> <b style="color: #3b5998">Име:</b> ' + titleArray[i] + '</h6>' +
+                    '<h6> <b style="color: #3b5998">Категорија:</b> ' + categoryArray[i] + '</h6>' +
+                    '<h6> <b style="color: #3b5998">Адреса:</b> ' + addressArray[i] + '</h6>' +
+                    '<div style="width:300px; height:250px;background-image: url('+imageArray[i]+')"></div>'
+                );
         }
 
 
