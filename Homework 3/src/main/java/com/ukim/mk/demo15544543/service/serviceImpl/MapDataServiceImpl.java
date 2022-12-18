@@ -26,4 +26,10 @@ public class MapDataServiceImpl implements MapDataService {
     public Optional<MapData> findById(Integer id) {
         return Optional.of(this.mapDataRepository.findById(id).get());
     }
+
+
+    @Override
+    public List<MapData> findAllByCategory(String city,String category) {
+        return this.mapDataRepository.findAllByCategory(city,category);
+    }
 }
