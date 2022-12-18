@@ -39,13 +39,18 @@ html{
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 100px;
+    background: lightslategrey;
     box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
 }
 
+
 .btnNav{
-    width: 100px;
+    width: 125px;
+    margin-left: 10px;
+    height: 35px;
+    border-radius: 10%;
 }
 
 #map{
@@ -53,7 +58,7 @@ html{
     height: 80%;
 }
 
-select {
+select{
     background-color: #0563af;
     color: white;
     padding: 12px;
@@ -64,6 +69,8 @@ select {
     -webkit-appearance: button;
     appearance: button;
     outline: none;
+    border-radius: 7%;
+    margin-right: 10px;
 }
 
 .paragraphs{
@@ -88,4 +95,26 @@ select {
     align-items: center;
     justify-content: center;
     flex-direction: row;
+}
+
+input{
+    background-color: white;
+    color: black;
+    padding: 12px;
+    width: 250px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    outline: none;
+    border-radius: 7%;
+}
+
+form{
+    border: 1px solid white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
