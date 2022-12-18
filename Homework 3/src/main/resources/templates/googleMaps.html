@@ -31,8 +31,13 @@
         </form>
 
         <form action="/map/filtered-data-by-address" method="post">
-            <input name="address" placeholder="Имате адреса? Внесете ја тука и проверете"/>
+            <input list="addresses" name="address" placeholder="Имате адреса? Внесете ја тука и проверете"/>
+
+            <datalist  id="addresses">
+                <option th:each="mapData:${mapData}" th:value="${mapData.getAddress()}">
+            </datalist>
             <button type="submit" class="btnNav">Барај</button>
+
         </form>
 
     </div>
@@ -41,6 +46,10 @@
     <ul style="display: none" th:each="mapData:${mapData}">
         <li  class="latArray" th:text="${mapData.getLatitude()}"></li>
     </ul>
+
+
+
+
 
     <ul style="display: none" th:each="mapData:${mapData}">
         <li  class="lonArray" th:text="${mapData.getLongitude()}"></li>
