@@ -30,18 +30,34 @@
 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <script>
 
-    let latArray = document.getElementsByClassName('latArray');
-    let lonArray = document.getElementsByClassName('lonArray');
+    let latArray = [];
+    let lonArray = [];
+    for (var i=0; i<document.getElementsByClassName('latArray').length; i++) {
+       latArray[i] = (document.getElementsByClassName('latArray').item(i).innerHTML)
+        lonArray[i] = (document.getElementsByClassName('lonArray').item(i).innerHTML)
+    }
+     for(let i in latArray){
+         console.log(latArray + " - " + lonArray)
+     }
 
-    var map = L.map('map').setView([51.505, -0.09], 13);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
 
-    for(let i in latArray.length)
-    L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();
+        const map = L.map('map').setView([latArray[0], lonArray[0]], 14);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            minZoom: 0,
+            maxZoom: 20,
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        for(let i in latArray){
+            marker = L.marker([latArray[i], lonArray[i]]).addTo(map)
+                .bindPopup('<span style="text-align: center">' + '<hr>' +
+                    '<h6> <b style="color: #3b5998">Име:</b> ' + latArray[i] + '</h6>' +
+                    '<h6> <b style="color: #3b5998">Категорија:</b> ' + latArray[i] + '</h6>'
+                   );
+        }
+
+
+
 
 </script>
 </body>
