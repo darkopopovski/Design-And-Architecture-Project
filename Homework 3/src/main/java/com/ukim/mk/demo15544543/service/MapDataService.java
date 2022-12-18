@@ -11,4 +11,6 @@ public interface MapDataService{
     public Optional<MapData> findById(Integer id);
 
     public List<MapData> findAllByCategory(String city, String category);
+
+    List<MapData> findAllByAddress(String address);
 }

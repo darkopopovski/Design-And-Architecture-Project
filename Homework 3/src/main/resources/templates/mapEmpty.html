@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" th:href="@{../css/styleCSS.css}"/>
+  <!--    Style for map-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css"
+        type="text/css">
+  <script src="//unpkg.com/leaflet-gesture-handling"></script>
+</head>
+<body>
+
+<div id="googleMaps">
+  <div class="map-nav">
+    <form action="/map/filtered-data-by-cityAndCategory" method="post">
+      <select name="city">
+        <option value="NULL" selected="true" disabled="disabled" name="city">Одбери Град</option>
+        <option value="Berovo" name="city">Берово</option>
+        <option value="Bitola" name="city">Битола</option>
+        <option value="Bogdanci" name="city">Богданци</option>
+        <option value="Valandovo" name="city">Валандово</option>
+        <option value="Veles" name="city">Велес</option>
+        <option value="Vinica" name="city">Виница</option>
+        <option value="Gevgelija" name="city">Гевгелија</option>
+        <option value="Gostivar" name="city">Гостивар</option>
+        <option value="Debar" name="city">Дебар</option>
+        <option value="Delchevo" name="city">Делчево</option>
+        <option value="Demir Kapija" name="city">Демир Капија</option>
+        <option value="Demir Hisar" name="city">Демир Хисар</option>
+        <option value="Kavadarci" name="city">Кавадарци</option>
+        <option value="Kichevo" name="city">Кичево</option>
+        <option value="Kochani" name="city">Кочани</option>
+        <option value="Kratovo" name="city">Кратово</option>
+        <option value="Kriva Palanka" name="city">Крива Паланка</option>
+        <option value="Krushevo" name="city">Крушево</option>
+        <option value="Kumanovo" name="city">Куманово</option>
+        <option value="Makedonski Brod" name="city">Македонски Брод</option>
+        <option value="Makedonska Kamenica" name="city">Македонска Каменица</option>
+        <option value="Negotino" name="city">Неготино</option>
+        <option value="Ohrid" name="city">Охрид</option>
+        <option value="Pehcevo" name="city">Пехчево</option>
+        <option value="Prilep" name="city">Прилеп</option>
+        <option value="Probishtip" name="city">Пробиштип</option>
+        <option value="Radovish" name="city">Радовиш</option>
+        <option value="Resen" name="city">Ресен</option>
+        <option value="Sveti Nikole" name="city">Свети Николе</option>
+        <option value="Skopje" name="city">Скопје</option>
+        <option value="Strumica" name="city">Струмица</option>
+        <option value="Tetovo" name="city">Тетово</option>
+        <option value="Shtip" name="city">Штип</option>
+      </select>
+
+      <select name="category">
+        <option value="NULL" selected="true" disabled="disabled" name="category">Одбери Категорија</option>
+        <option value="Bank" name="category">ATM</option>
+        <option value="ATM" name="category">Bank</option>
+      </select>
+      <button type="submit" class="btnNav">Барај</button>
+    </form>
+
+    <form action="/map/filtered-data-by-address" method="post">
+      <input list="addresses" name="address" placeholder="Имате адреса? Внесете ја тука и проверете"/>
+
+      <datalist  id="addresses">
+        <option th:each="mapData:${mapData}" th:value="${mapData.getAddress()}">
+      </datalist>
+      <button type="submit" class="btnNav">Барај</button>
+
+    </form>
+  
+  </div>
+  <div id="map" style="background: #2c2b39;display: flex;align-items: center;justify-content: center;text-transform: uppercase">
+    <h1 style="font-family: 'Roboto', sans-serif; font-size: 35px; color: white" >Ви се извинуваме но за жал нема локации во посакуваниот град</h1>
+  </div>
+
+  <ul style="display: none" th:each="mapData:${mapData}">
+    <li  class="latArray" th:text="${mapData.getLatitude()}"></li>
+  </ul>
+
+
+  <ul style="display: none" th:each="mapData:${mapData}">
+    <li  class="lonArray" th:text="${mapData.getLongitude()}"></li>
+  </ul>
+
+  <ul style="display: none" th:each="mapData:${mapData}">
+    <li  class="titleArray" th:text="${mapData.getTitle()}"></li>
+  </ul>
+
+  <ul style="display: none" th:each="mapData:${mapData}">
+    <li  class="categoryArray" th:text="${mapData.getCategory()}"></li>
+  </ul>
+
+  <ul style="display: none" th:each="mapData:${mapData}">
+    <li  class="addressArray" th:text="${mapData.getAddress()}"></li>
+  </ul>
+
+  <ul style="display: none" th:each="mapData:${mapData}">
+    <li  class="imageArray" th:text="${mapData.getImgUrl()}"></li>
+  </ul>
+</div>
+</body>
+</html>

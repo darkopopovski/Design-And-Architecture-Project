@@ -22,6 +22,7 @@ public class MapData {
     public String reviewCount ;
     public String category ;
     public String attributes ;
+    @Column(name = "address")
     public String address ;
 
     @Column(name = "plusCode")
@@ -36,6 +37,7 @@ public class MapData {
     public String friday ;
     public String saturday ;
     public String currentStatus ;
+    @Column(name = "imgurl")
     public String imgUrl ;
     public Boolean isClaimed;
     public Float latitude ;

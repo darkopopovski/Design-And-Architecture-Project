@@ -32,4 +32,9 @@ public class MapDataServiceImpl implements MapDataService {
     public List<MapData> findAllByCategory(String city,String category) {
         return this.mapDataRepository.findAllByCategory(city,category);
     }
+
+    @Override
+    public List<MapData> findAllByAddress(String address) {
+        return this.mapDataRepository.findAllByAddress(address);
+    }
 }
