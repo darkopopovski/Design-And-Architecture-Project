@@ -13,4 +13,7 @@ public interface MapDataRepository extends JpaRepository<MapData, Integer> {
 
     @Query(value = "select * from map_skopje_banks_atms as mapData where (mapdata.plusCode ~ ? and mapData.category=?)",nativeQuery = true)
     public List<MapData> findAllByCategory(String city, String category);
+
+    @Query(value = "select * from map_skopje_banks_atms as mapData where mapData.address ~ ? ",nativeQuery = true)
+    List<MapData> findAllByAddress(String address);
 }

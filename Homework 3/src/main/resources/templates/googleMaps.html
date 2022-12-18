@@ -16,7 +16,7 @@
 <!--The div element for the map -->
 <div id="googleMaps">
     <div class="map-nav">
-        <form action="/map" method="post">
+        <form action="/map/filtered-data-by-cityAndCategory" method="post">
             <select name="city">
                 <option value="NULL" selected="true" disabled="disabled" name="city">Одбери Град</option>
                 <option value="Skopje" name="city">Skopje</option>
@@ -30,7 +30,7 @@
             <button type="submit" class="btnNav">Барај</button>
         </form>
 
-        <form action="/map" method="post">
+        <form action="/map/filtered-data-by-address" method="post">
             <input name="address" placeholder="Имате адреса? Внесете ја тука и проверете"/>
             <button type="submit" class="btnNav">Барај</button>
         </form>
