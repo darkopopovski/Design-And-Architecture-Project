@@ -20,7 +20,7 @@
 
 <div id="googleMaps">
     <div class="map-nav">
-        <div>
+        <div class="map-nav-wrapper">
         <form action="/map/filtered-data-by-cityAndCategory" method="post">
             <select name="city">
                 <option value="NULL" selected="true" disabled="disabled" name="city">Одбери Град</option>
@@ -77,8 +77,10 @@
 
         </form>
 </div>
-        <button type="button" onclick="showLocations()">TEST BUTTON</button>
-
+        <div class="map-nav-wrapper-second">
+            <span>Притиснете на копчето доколку сакате да ги прикажете најблиските локации</span>
+        <button type="button"  class="btnNav" onclick="showLocations()">Најблиски</button>
+        </div>
     </div>
     <div id="map"></div>
 
