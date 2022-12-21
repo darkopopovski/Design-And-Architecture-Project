@@ -14,7 +14,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private final PasswordEncoder passwordEncoder;
-
     public WebSecurityConfig(
             PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
@@ -41,7 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")

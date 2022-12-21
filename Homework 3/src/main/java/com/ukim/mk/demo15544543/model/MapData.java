@@ -5,12 +5,15 @@ package com.ukim.mk.demo15544543.model;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 @Entity
 @Table(name = "map_skopje_banks_atms")
 @NoArgsConstructor
 public class MapData {
+
+    private final DecimalFormat df = new DecimalFormat("#.##");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,8 +70,8 @@ public class MapData {
         this.currentStatus = currentStatus;
         this.imgUrl = imgUrl;
         this.isClaimed = isClaimed;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.latitude = Float.valueOf(df.format(latitude));
+        this.longitude = Float.valueOf(df.format(longitude));
         this.query = query;
         this.timestampp = timestampp;
     }
