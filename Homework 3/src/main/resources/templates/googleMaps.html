@@ -117,8 +117,6 @@
     navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude;
         let long = position.coords.longitude;
-
-
     let latArray = [];
     let lonArray = [];
     let titleArray = [];
@@ -148,12 +146,13 @@
          console.log(imageArray[0]);
     console.log(parseFloat(latArray[0]).toFixed(2), parseFloat(lonArray[0]).toFixed(2));
 
-        const map = L.map('map').setView([latArray[0],lonArray[0]], 16);
+        const map = L.map('map').setView([lat,long], 16);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             minZoom: 0,
             maxZoom: 20,
             attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
         }).addTo(map);
+
 
     var layerGroup = L.layerGroup().addTo(map);
 
@@ -168,17 +167,30 @@
 
         }
 
+        L.marker([lat,long], {icon: greenIcon}).addTo(layerGroup).bindPopup(
+            '<h6> <b style="color: #3b5998">Твојата Локација:</b> </h6>'
+        )
 
 
 
 
+        var circle = L.circle([lat, long], {
+            color: "red",
+            fillColor: "#f03",
+            fillOpacity: 0,
+            radius: 1000.00
+        }).addTo(map);
 
 
 
-    var latlngs = [ [latArray[0], lonArray[0]], [latArray[1], lonArray[1]]];
-    var polyline = L.polyline(latlngs, {color: 'red'});
-    polyline.addTo(map);
-
+        for(let i in latArray) {
+            var d = map.distance([lat, long], [latArray[i], lonArray[i]]);
+            if(d < circle.getRadius()){
+                var latlngs = [ [lat,long], [latArray[i], lonArray[i]]];
+                var polyline = L.polyline(latlngs, {color: 'red'});
+                polyline.addTo(map);
+            }
+        }
     });}
     showLocations();
 </script>
