@@ -180,7 +180,7 @@
 
         L.marker([lat,long], {icon: greenIcon}).addTo(layerGroup).bindPopup(
             '<h6> <b style="color: #3b5998">Твојата Локација:</b> </h6>'
-        )
+        ).openPopup();
         var circle = L.circle([lat, long], {
             color: "red",
             fillColor: "#f03",
