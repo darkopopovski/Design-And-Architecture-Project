@@ -20,6 +20,7 @@
 
 <div id="googleMaps">
     <div class="map-nav">
+        <div>
         <form action="/map/filtered-data-by-cityAndCategory" method="post">
             <select name="city">
                 <option value="NULL" selected="true" disabled="disabled" name="city">Одбери Град</option>
@@ -74,10 +75,8 @@
             </datalist>
             <button type="submit" class="btnNav">Барај</button>
 
-
-
         </form>
-
+</div>
         <button type="button" onclick="showLocations()">TEST BUTTON</button>
 
     </div>
@@ -113,10 +112,6 @@
 
 <script>
 
-    function showLocations(){
-    navigator.geolocation.getCurrentPosition((position) => {
-        let lat = position.coords.latitude;
-        let long = position.coords.longitude;
     let latArray = [];
     let lonArray = [];
     let titleArray = [];
@@ -124,13 +119,48 @@
     let addressArray = [];
     let imageArray = [];
     for (var i=0; i<document.getElementsByClassName('latArray').length; i++) {
-       latArray[i] = (document.getElementsByClassName('latArray').item(i).innerHTML)
+        latArray[i] = (document.getElementsByClassName('latArray').item(i).innerHTML)
         lonArray[i] = (document.getElementsByClassName('lonArray').item(i).innerHTML)
         titleArray[i] = (document.getElementsByClassName('titleArray').item(i).innerHTML)
         categoryArray[i] = (document.getElementsByClassName('categoryArray').item(i).innerHTML)
         addressArray[i] = (document.getElementsByClassName('addressArray').item(i).innerHTML)
         imageArray[i] = (document.getElementsByClassName('imageArray').item(i).innerHTML)
     }
+
+    console.log(addressArray[0]);
+    console.log(imageArray[0]);
+
+    const map = L.map('map').setView([latArray[0],lonArray[0]], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: 0,
+        maxZoom: 20,
+        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+
+    var layerGroup = L.layerGroup().addTo(map);
+
+    for(let i in latArray){
+        marker = L.marker([latArray[i],lonArray[i]]).addTo(layerGroup)
+            .bindPopup('<span style="text-align: center">' + '<hr>' +
+                '<h6> <b style="color: #3b5998">Име:</b> ' + titleArray[i] + '</h6>' +
+                '<h6> <b style="color: #3b5998">Категорија:</b> ' + categoryArray[i] + '</h6>' +
+                '<h6> <b style="color: #3b5998">Адреса:</b> ' + addressArray[i] + '</h6>' +
+                '<div style="width:300px; height:250px;background-image: url('+imageArray[i]+')"></div>'
+            );
+
+    }
+
+
+
+
+
+    function showLocations(){
+        layerGroup.clearLayers();
+    navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
+
 
         var greenIcon = new L.Icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
@@ -142,38 +172,13 @@
         });
 
 
-         console.log(addressArray[0]);
-         console.log(imageArray[0]);
-    console.log(parseFloat(latArray[0]).toFixed(2), parseFloat(lonArray[0]).toFixed(2));
-
-        const map = L.map('map').setView([lat,long], 16);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            minZoom: 0,
-            maxZoom: 20,
-            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-        }).addTo(map);
 
 
-    var layerGroup = L.layerGroup().addTo(map);
-
-        for(let i in latArray){
-            marker = L.marker([latArray[i],lonArray[i]]).addTo(layerGroup)
-                .bindPopup('<span style="text-align: center">' + '<hr>' +
-                    '<h6> <b style="color: #3b5998">Име:</b> ' + titleArray[i] + '</h6>' +
-                    '<h6> <b style="color: #3b5998">Категорија:</b> ' + categoryArray[i] + '</h6>' +
-                    '<h6> <b style="color: #3b5998">Адреса:</b> ' + addressArray[i] + '</h6>' +
-                    '<div style="width:300px; height:250px;background-image: url('+imageArray[i]+')"></div>'
-                );
-
-        }
+        var layerGroup = L.layerGroup().addTo(map);
 
         L.marker([lat,long], {icon: greenIcon}).addTo(layerGroup).bindPopup(
             '<h6> <b style="color: #3b5998">Твојата Локација:</b> </h6>'
         )
-
-
-
-
         var circle = L.circle([lat, long], {
             color: "red",
             fillColor: "#f03",
@@ -181,18 +186,30 @@
             radius: 1000.00
         }).addTo(map);
 
-
-
         for(let i in latArray) {
             var d = map.distance([lat, long], [latArray[i], lonArray[i]]);
             if(d < circle.getRadius()){
+
+                marker = L.marker([latArray[i],lonArray[i]]).addTo(layerGroup)
+                    .bindPopup('<span style="text-align: center">' + '<hr>' +
+                        '<h6> <b style="color: #3b5998">Име:</b> ' + titleArray[i] + '</h6>' +
+                        '<h6> <b style="color: #3b5998">Категорија:</b> ' + categoryArray[i] + '</h6>' +
+                        '<h6> <b style="color: #3b5998">Адреса:</b> ' + addressArray[i] + '</h6>' +
+                        '<div style="width:300px; height:250px;background-image: url('+imageArray[i]+')"></div>'
+                    );
+
                 var latlngs = [ [lat,long], [latArray[i], lonArray[i]]];
-                var polyline = L.polyline(latlngs, {color: 'red'});
+                var polyline = L.polyline(latlngs, {color: 'red', smoothFactor: 1.0});
                 polyline.addTo(map);
+
             }
+
         }
+        map.setView([lat,long], 16);
+
+
     });}
-    showLocations();
+
 </script>
 </body>
 </html>
