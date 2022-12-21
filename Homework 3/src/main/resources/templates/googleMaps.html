@@ -11,11 +11,16 @@
     <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css"
           type="text/css">
     <script src="//unpkg.com/leaflet-gesture-handling"></script>
+    <script src="jquery-2.1.4.js"></script>
+    .<script src="https://npmcdn.com/leaflet-geometryutil"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/leaflet.css" rel="stylesheet" />
+    <script th:src="@{../css/leaflet.polylineoffset.js}"></script>
 </head>
 <body>
 
 <div id="googleMaps">
     <div class="map-nav">
+        <div class="map-nav-wrapper">
         <form action="/map/filtered-data-by-cityAndCategory" method="post">
             <select name="city">
                 <option value="NULL" selected="true" disabled="disabled" name="city">Одбери Град</option>
@@ -71,7 +76,11 @@
             <button type="submit" class="btnNav">Барај</button>
 
         </form>
-
+</div>
+        <div class="map-nav-wrapper-second">
+            <span>Притиснете на копчето доколку сакате да ги прикажете најблиските локации</span>
+        <button type="button"  class="btnNav" onclick="showLocations()">Најблиски</button>
+        </div>
     </div>
     <div id="map"></div>
 
@@ -101,11 +110,10 @@
     </ul>
 </div>
 
-<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-
 
 
 <script>
+
     let latArray = [];
     let lonArray = [];
     let titleArray = [];
@@ -113,7 +121,7 @@
     let addressArray = [];
     let imageArray = [];
     for (var i=0; i<document.getElementsByClassName('latArray').length; i++) {
-       latArray[i] = (document.getElementsByClassName('latArray').item(i).innerHTML)
+        latArray[i] = (document.getElementsByClassName('latArray').item(i).innerHTML)
         lonArray[i] = (document.getElementsByClassName('lonArray').item(i).innerHTML)
         titleArray[i] = (document.getElementsByClassName('titleArray').item(i).innerHTML)
         categoryArray[i] = (document.getElementsByClassName('categoryArray').item(i).innerHTML)
@@ -121,26 +129,89 @@
         imageArray[i] = (document.getElementsByClassName('imageArray').item(i).innerHTML)
     }
 
-         console.log(addressArray[0]);
+    console.log(addressArray[0]);
     console.log(imageArray[0]);
 
+    const map = L.map('map').setView([latArray[0],lonArray[0]], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: 0,
+        maxZoom: 20,
+        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-        const map = L.map('map').setView([latArray[0], lonArray[0]], 18);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            minZoom: 0,
-            maxZoom: 20,
-            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+
+    var layerGroup = L.layerGroup().addTo(map);
+
+    for(let i in latArray){
+        marker = L.marker([latArray[i],lonArray[i]]).addTo(layerGroup)
+            .bindPopup('<span style="text-align: center">' + '<hr>' +
+                '<h6> <b style="color: #3b5998">Име:</b> ' + titleArray[i] + '</h6>' +
+                '<h6> <b style="color: #3b5998">Категорија:</b> ' + categoryArray[i] + '</h6>' +
+                '<h6> <b style="color: #3b5998">Адреса:</b> ' + addressArray[i] + '</h6>' +
+                '<div style="width:300px; height:250px;background-image: url('+imageArray[i]+')"></div>'
+            );
+
+    }
+
+
+
+
+
+    function showLocations(){
+        layerGroup.clearLayers();
+    navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
+
+
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+
+
+
+        var layerGroup = L.layerGroup().addTo(map);
+
+        L.marker([lat,long], {icon: greenIcon}).addTo(layerGroup).bindPopup(
+            '<h6> <b style="color: #3b5998">Твојата Локација:</b> </h6>'
+        )
+        var circle = L.circle([lat, long], {
+            color: "red",
+            fillColor: "#f03",
+            fillOpacity: 0,
+            radius: 1000.00
         }).addTo(map);
 
-        for(let i in latArray){
-            marker = L.marker([latArray[i], lonArray[i]]).addTo(map)
-                .bindPopup('<span style="text-align: center">' + '<hr>' +
-                    '<h6> <b style="color: #3b5998">Име:</b> ' + titleArray[i] + '</h6>' +
-                    '<h6> <b style="color: #3b5998">Категорија:</b> ' + categoryArray[i] + '</h6>' +
-                    '<h6> <b style="color: #3b5998">Адреса:</b> ' + addressArray[i] + '</h6>' +
-                    '<div style="width:300px; height:250px;background-image: url('+imageArray[i]+')"></div>'
-                );
+        for(let i in latArray) {
+            var d = map.distance([lat, long], [latArray[i], lonArray[i]]);
+            if(d < circle.getRadius()){
+
+                marker = L.marker([latArray[i],lonArray[i]]).addTo(layerGroup)
+                    .bindPopup('<span style="text-align: center">' + '<hr>' +
+                        '<h6> <b style="color: #3b5998">Име:</b> ' + titleArray[i] + '</h6>' +
+                        '<h6> <b style="color: #3b5998">Категорија:</b> ' + categoryArray[i] + '</h6>' +
+                        '<h6> <b style="color: #3b5998">Адреса:</b> ' + addressArray[i] + '</h6>' +
+                        '<div style="width:300px; height:250px;background-image: url('+imageArray[i]+')"></div>'
+                    );
+
+                var latlngs = [ [lat,long], [latArray[i], lonArray[i]]];
+                var polyline = L.polyline(latlngs, {color: 'red', smoothFactor: 1.0});
+                polyline.addTo(map);
+
+            }
+
         }
+        map.setView([lat,long], 16);
+
+
+    });}
+
 </script>
 </body>
 </html>
