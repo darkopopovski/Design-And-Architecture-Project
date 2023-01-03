@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,900;1,300;1,900&display=swap');
+.main-wrapper{
+    background: #2c2b39;
+    height:100vh;
+    width: 87%;
+    margin-left: 13%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-size: cover;
+}
+
+p{
+    width: 75%;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    height: 70%;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-family: 'Roboto', sans-serif;
+}
+html{
+    overflow: hidden;
+}
+#googleMaps{
+    width: 87%;
+    height: 110vh;
+    margin-left: 13%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.map-nav{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    background: lightslategrey;
+    box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
+    flex-direction: column;
+}
+.map-nav .map-nav-wrapper{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.map-nav .map-nav-wrapper-second{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+}
+span{
+    font-size: 25px;
+}
+
+@media only screen and (max-width: 1100px) {
+    .map-nav{
+        flex-direction: column;
+        height: 150px;
+    }
+    form{
+        margin-top: 15px;
+    }
+}
+.btnNav{
+    width: 125px;
+    margin-left: 10px;
+    height: 35px;
+    border-radius: 10%;
+}
+
+#map{
+    width: 100%;
+    height: 80%;
+}
+
+select{
+    background-color: #0563af;
+    color: white;
+    padding: 12px;
+    width: 250px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    border-radius: 7%;
+    margin-right: 10px;
+}
+
+.paragraphs{
+    width: 85%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-transform: uppercase;
+}
+.paragraphs p{
+    margin-left: 20%;
+    font-size: 2rem;
+}
+
+.fiksirani{
+    border:1px solid white;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+input{
+    background-color: white;
+    color: black;
+    padding: 12px;
+    width: 250px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    outline: none;
+    border-radius: 7%;
+}
+
+form{
+    border: 1px solid white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
